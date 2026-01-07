@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+      }
+      .card-shadow {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      }
+      .text-2rem {
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <div
+      id="login-page-container"
+      class="min-h-screen flex items-center justify-center px-4 py-12"
+      style="background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%)"
+    >
+      <div
+        id="login-card"
+        class="w-full max-w-md rounded-2xl shadow-2xl border-none bg-white card-shadow"
+      >
+        <header class="text-center space-y-2 pb-6 pt-8">
+          <div
+            class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 bg-gradient-blue"
+          >
+            <svg
+              class="w-8 h-8 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              ></path>
+            </svg>
+          </div>
+          <h1 class="text-2xl font-bold text-2rem">Selamat Datang</h1>
+          <p class="text-gray-500">Masuk ke akun Projek ABS Anda</p>
+        </header>
+
+        <div class="p-6 pt-0">
+          <div class="w-full">
+            <div
+              class="grid w-full grid-cols-2 mb-6 p-1 bg-gray-100 rounded-lg"
+            >
+              <button
+                id="tab-username"
+                class="p-2 rounded-md font-medium transition-colors text-gray-500 hover:text-gray-900"
+              >
+                Username
+              </button>
+              <button
+                id="tab-email"
+                class="p-2 rounded-md font-medium transition-colors bg-white shadow-sm text-gray-900"
+              >
+                Email
+              </button>
+            </div>
+
+            <div id="username-content" class="hidden space-y-4">
+              <div class="p-4 bg-yellow-50 text-yellow-800 text-sm rounded-lg">
+                Silakan gunakan Login Email untuk saat ini.
+              </div>
+            </div>
+
+            <div id="email-content" class="space-y-4">
+              <form id="login-form-email">
+                <div class="space-y-2">
+                  <label class="text-sm font-medium leading-none">Email</label>
+                  <div class="relative">
+                    <svg
+                      class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 7.72V16a2 2 0 01-2 2H5a2 2 0 01-2-2v-1.28m0-7.72v-.5a2 2 0 012-2h14a2 2 0 012 2v.5"
+                      ></path>
+                    </svg>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="contoh@email.com"
+                      class="flex h-10 w-full rounded-lg border border-gray-300 px-3 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label class="text-sm font-medium leading-none"
+                    >Password</label
+                  >
+                  <div class="relative">
+                    <svg
+                      class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                      ></path>
+                    </svg>
+                    <input
+                      id="password"
+                      type="password"
+                      placeholder="Masukkan password"
+                      class="flex h-10 w-full rounded-lg border border-gray-300 px-3 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full rounded-lg py-3 text-white font-semibold flex items-center justify-center mt-6 bg-gradient-blue hover:opacity-90 transition-opacity"
+                >
+                  Masuk
+                  <svg
+                    class="ml-2 w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    ></path>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="mt-6 text-center">
+            <p class="text-sm text-gray-600">
+              Belum memiliki akun?
+              <a href="register.html" class="text-[#007bff] hover:underline"
+                >Registrasi sekarang</a
+              >
+            </p>
+          </div>
+          <div class="mt-4 text-center">
+            <a
+              href="home.html"
+              class="text-sm text-gray-500 hover:text-gray-700"
+              >← Kembali ke Beranda</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import {
+        auth,
+        db,
+        signInWithEmailAndPassword,
+        getDoc,
+        doc,
+      } from "./firebase-config.js";
+
+      // Tab Switcher Logic
+      const tabUsername = document.getElementById("tab-username");
+      const tabEmail = document.getElementById("tab-email");
+      const contentUsername = document.getElementById("username-content");
+      const contentEmail = document.getElementById("email-content");
+
+      tabEmail.addEventListener("click", () => {
+        tabEmail.className =
+          "p-2 rounded-md font-medium transition-colors bg-white shadow-sm text-gray-900";
+        tabUsername.className =
+          "p-2 rounded-md font-medium transition-colors text-gray-500 hover:text-gray-900";
+        contentEmail.classList.remove("hidden");
+        contentUsername.classList.add("hidden");
+      });
+
+      tabUsername.addEventListener("click", () => {
+        tabUsername.className =
+          "p-2 rounded-md font-medium transition-colors bg-white shadow-sm text-gray-900";
+        tabEmail.className =
+          "p-2 rounded-md font-medium transition-colors text-gray-500 hover:text-gray-900";
+        contentUsername.classList.remove("hidden");
+        contentEmail.classList.add("hidden");
+      });
+
+      // Login Logic
+      const loginForm = document.getElementById("login-form-email");
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+
+        try {
+          submitBtn.innerHTML = "Memuat...";
+          submitBtn.disabled = true;
+
+          // 1. Proses Login ke Firebase Auth
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+          const user = userCredential.user;
+
+          // 2. Cek Role User di Database Firestore
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            alert(
+              `Login Berhasil! Selamat datang, ${userData.nama || user.email}`
+            );
+
+            if (userData.role === "admin") {
+              window.location.href = "admin.html";
+            } else {
+              window.location.href = "home.html";
+            }
+          } else {
+            // Jika data user tidak ada di DB tapi Auth sukses (fallback)
+            window.location.href = "home.html";
+          }
+        } catch (error) {
+          console.error("Login Error:", error);
+          let msg = "Gagal Login. Periksa email dan password.";
+          if (error.code === "auth/invalid-credential")
+            msg = "Email atau password salah.";
+          alert(msg);
+
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

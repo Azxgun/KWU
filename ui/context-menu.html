@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Context Menu Component</title>
+</head>
+<body class="h-screen bg-slate-50 flex items-center justify-center">
+
+    <div id="context-area" class="w-80 h-40 border-2 border-dashed border-slate-300 rounded-xl flex items-center justify-center text-slate-500 text-sm text-center p-6">
+        Klik kanan di dalam kotak ini untuk melihat menu
+    </div>
+
+    <div id="context-menu" class="fixed hidden z-50 min-w-[8rem] overflow-hidden rounded-md border border-slate-200 bg-white p-1 text-slate-950 shadow-md animate-in fade-in-80 scale-in-95 w-56">
+        
+        <div class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-slate-100 focus:bg-slate-100 transition-colors">
+            Back
+            <span class="ml-auto text-xs tracking-widest text-slate-500">⌘[</span>
+        </div>
+        
+        <div class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-slate-100 opacity-50 pointer-events-none">
+            Forward
+            <span class="ml-auto text-xs tracking-widest text-slate-500">⌘]</span>
+        </div>
+
+        <div class="my-1 h-px bg-slate-200"></div>
+
+        <div class="px-2 py-1.5 text-sm font-semibold text-slate-900">Alat</div>
+        
+        <div class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-slate-100 transition-colors">
+            Reload
+            <span class="ml-auto text-xs tracking-widest text-slate-500">⌘R</span>
+        </div>
+
+        <div class="my-1 h-px bg-slate-200"></div>
+
+        <div class="relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-slate-100 transition-colors">
+            <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            Tampilkan Toolbar
+        </div>
+    </div>
+
+    <script>
+        const area = document.getElementById('context-area');
+        const menu = document.getElementById('context-menu');
+
+        // Munculkan menu saat klik kanan
+        area.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // Matikan menu bawaan browser
+            
+            menu.style.display = 'block';
+            menu.style.left = `${e.clientX}px`;
+            menu.style.top = `${e.clientY}px`;
+        });
+
+        // Sembunyikan menu saat klik di mana saja
+        document.addEventListener('click', () => {
+            menu.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>

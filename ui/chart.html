@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Component</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="p-10 bg-slate-50 flex justify-center">
+
+    <div class="w-full max-w-2xl bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+        <div class="flex flex-col gap-2 mb-6">
+            <h3 class="font-semibold text-lg leading-none tracking-tight">Statistik Pengunjung</h3>
+            <p class="text-sm text-slate-500">Data performa mingguan</p>
+        </div>
+
+        <div class="h-[300px] w-full">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="flex items-center justify-center gap-4 mt-6">
+            <div class="flex items-center gap-2 text-xs font-medium text-slate-600">
+                <div class="h-2 w-2 rounded-[2px] bg-blue-500"></div>
+                Desktop
+            </div>
+            <div class="flex items-center gap-2 text-xs font-medium text-slate-600">
+                <div class="h-2 w-2 rounded-[2px] bg-emerald-500"></div>
+                Mobile
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inisialisasi Grafik (Logika yang menggantikan ChartConfig di TSX)
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Desktop',
+                    data: [450, 580, 490, 720, 650, 810, 950],
+                    borderColor: '#3b82f6', // blue-500
+                    backgroundColor: '#3b82f622',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'Mobile',
+                    data: [320, 410, 380, 520, 480, 610, 720],
+                    borderColor: '#10b981', // emerald-500
+                    backgroundColor: '#10b98122',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false } // Kita buat legend kustom di HTML atas
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { display: false } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Registrasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* CSS Tambahan untuk gradien dan elemen khusus */
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+      }
+      .card-shadow {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      }
+      .text-2rem {
+        font-size: 2rem;
+      }
+      /* Style untuk textarea agar ikon MapPin tetap di atas */
+      .textarea-with-icon {
+        padding-top: 1.5rem; /* Tambahkan padding atas yang cukup */
+        min-height: 100px;
+        resize: none;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <div
+      id="register-page-container"
+      class="min-h-screen flex items-center justify-center px-4 py-12"
+      style="background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%)"
+    >
+      <div
+        class="w-full max-w-lg rounded-2xl shadow-2xl border-none bg-white card-shadow"
+      >
+        <header class="text-center space-y-2 pb-6 pt-8">
+          <div
+            class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 bg-gradient-blue"
+            style="
+              background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+            "
+          >
+            <svg
+              class="w-8 h-8 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M18 9v3m0 0v3m0-3h3m-3 0h-3M6 18h2m-2 0h-2m2 0a2 2 0 100-4 2 2 0 000 4zM12 4v.01M16 16v.01M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              ></path>
+            </svg>
+          </div>
+          <h1 class="text-2xl font-bold text-2rem">Buat Akun Baru</h1>
+          <p class="text-gray-500">
+            Daftar untuk menggunakan layanan Projek ABS
+          </p>
+        </header>
+
+        <div class="p-6 pt-0">
+          <form id="register-form" class="space-y-5">
+            <div class="space-y-2">
+              <label for="nama" class="text-sm font-medium leading-none">
+                Nama Lengkap <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <svg
+                  class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  ></path>
+                </svg>
+                <input
+                  id="nama"
+                  name="nama"
+                  type="text"
+                  placeholder="Masukkan nama lengkap"
+                  class="flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="username" class="text-sm font-medium leading-none">
+                Username <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <svg
+                  class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 7.72V16a2 2 0 01-2 2H5a2 2 0 01-2-2v-1.28m0-7.72v-.5a2 2 0 012-2h14a2 2 0 012 2v.5"
+                  ></path>
+                </svg>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  placeholder="Pilih username"
+                  class="flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="password" class="text-sm font-medium leading-none">
+                Password <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <svg
+                  class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  ></path>
+                </svg>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Minimal 6 karakter"
+                  class="flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label
+                for="confirmPassword"
+                class="text-sm font-medium leading-none"
+              >
+                Konfirmasi Password <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <svg
+                  class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  ></path>
+                </svg>
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Ulangi password"
+                  class="flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="noWa" class="text-sm font-medium leading-none">
+                Nomor WhatsApp <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <svg
+                  class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.135l-2.54 1.815a4.116 4.116 0 003.707 3.707l1.815-2.54a1 1 0 011.135-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C7.82 21 3 16.18 3 10V5z"
+                  ></path>
+                </svg>
+                <input
+                  id="noWa"
+                  name="noWa"
+                  type="tel"
+                  placeholder="Contoh: 08123456789"
+                  class="flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="alamat" class="text-sm font-medium leading-none">
+                Alamat <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <svg
+                  class="absolute left-3 top-3 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.99 1.99 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+                <textarea
+                  id="alamat"
+                  name="alamat"
+                  placeholder="Masukkan alamat lengkap"
+                  class="flex w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10 textarea-with-icon"
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full rounded-lg py-3 text-white font-semibold flex items-center justify-center mt-6"
+              style="
+                background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+              "
+            >
+              Daftar Sekarang
+              <svg
+                class="ml-2 w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
+            </button>
+          </form>
+
+          <div class="mt-6 text-center">
+            <p class="text-sm text-gray-600">
+              Sudah memiliki akun?
+              <a
+                href="login.html"
+                id="login-link"
+                class="text-[#007bff] hover:underline"
+                style="font-weight: 600"
+              >
+                Login di sini
+              </a>
+            </p>
+          </div>
+
+          <div class="mt-4 text-center">
+            <a
+              href="#"
+              id="home-link"
+              class="text-sm text-gray-500 hover:text-gray-700"
+            >
+              ← Kembali ke Beranda
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import {
+        auth,
+        db,
+        createUserWithEmailAndPassword,
+        setDoc,
+        doc,
+      } from "./firebase-config.js";
+
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Mengambil value dari input
+          const nama = document.getElementById("nama").value;
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+          const noWa = document.getElementById("noWa").value;
+          const alamat = document.getElementById("alamat").value;
+
+          // Validasi Password
+          if (password !== confirmPassword) {
+            alert("Password dan Konfirmasi Password tidak cocok!");
+            return;
+          }
+
+          if (password.length < 6) {
+            alert("Password minimal 6 karakter!");
+            return;
+          }
+
+          try {
+            // Ubah teks tombol loading
+            const btn = document.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.textContent = "Mendaftar...";
+            btn.disabled = true;
+
+            // 1. Buat User di Firebase Auth
+            // NOTE: Firebase Auth membutuhkan 'email'. Jika input Anda adalah username biasa,
+            // kita tambahkan @projekabs.com agar valid format emailnya.
+            // Atau lebih baik ubah input type="text" id="username" menjadi type="email" placeholder="Email" di HTML Anda.
+
+            // Deteksi apakah input berupa email valid
+            let emailToRegister = username;
+            if (!username.includes("@")) {
+              emailToRegister = username + "@projekabs.com"; // Fallback agar format valid
+            }
+
+            const userCredential = await createUserWithEmailAndPassword(
+              auth,
+              emailToRegister,
+              password
+            );
+            const user = userCredential.user;
+
+            // 2. Simpan Data Profil ke Firestore
+            await setDoc(doc(db, "users", user.uid), {
+              nama: nama,
+              username: username, // Simpan username asli
+              email: emailToRegister,
+              noWa: noWa,
+              alamat: alamat,
+              role: "user", // Role default
+              createdAt: new Date(),
+            });
+
+            alert("Registrasi Berhasil! Silakan Login.");
+            window.location.href = "login.html";
+          } catch (error) {
+            console.error("Error Registration:", error);
+
+            // Penanganan Error Spesifik agar user paham
+            let msg = "Gagal Registrasi: " + error.message;
+            if (error.code === "auth/email-already-in-use") {
+              msg = "Username/Email ini sudah terdaftar!";
+            } else if (error.code === "auth/weak-password") {
+              msg = "Password terlalu lemah (min. 6 karakter).";
+            } else if (error.code === "auth/invalid-email") {
+              msg = "Format email tidak valid.";
+            } else if (error.code === "auth/operation-not-allowed") {
+              msg =
+                "Login Email/Password belum diaktifkan di Firebase Console.";
+            }
+
+            alert(msg);
+
+            // Kembalikan tombol
+            const btn = document.querySelector('button[type="submit"]');
+            btn.innerHTML = `Daftar Sekarang <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>`;
+            btn.disabled = false;
+          }
+        });
+    </script>
+  </body>
+</html>

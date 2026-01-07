@@ -1,0 +1,36 @@
+<div class="p-6">
+  <div class="grid gap-3" role="radiogroup">
+    
+    <div class="flex items-center space-x-2">
+      <div class="relative flex items-center justify-center">
+        <input 
+          type="radio" 
+          id="option-one" 
+          name="example" 
+          class="peer appearance-none size-4 rounded-full border border-slate-300 bg-white shadow-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:ring-blue-500/50 checked:border-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
+        />
+        <div class="absolute pointer-events-none scale-0 peer-checked:scale-100 transition-transform flex items-center justify-center">
+          <div class="size-2 rounded-full bg-blue-600"></div>
+        </div>
+      </div>
+      <label for="option-one" class="text-sm font-medium leading-none cursor-pointer">Opsi Default</label>
+    </div>
+
+    <div class="flex items-center space-x-2">
+      <div class="relative flex items-center justify-center">
+        <input 
+          type="radio" 
+          id="option-two" 
+          name="example" 
+          checked
+          class="peer appearance-none size-4 rounded-full border border-slate-300 bg-white shadow-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:ring-blue-500/50 checked:border-blue-600"
+        />
+        <div class="absolute pointer-events-none scale-0 peer-checked:scale-100 transition-transform flex items-center justify-center">
+          <div class="size-2 rounded-full bg-blue-600"></div>
+        </div>
+      </div>
+      <label for="option-two" class="text-sm font-medium leading-none cursor-pointer">Opsi Terpilih</label>
+    </div>
+
+  </div>
+</div>

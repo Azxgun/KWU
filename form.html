@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Pemesanan</title>
+    <style>
+      :root {
+        --blue-gradient: linear-gradient(90deg, #0099ff 0%, #00ccff 100%);
+        --light-blue: #f0f7ff;
+        --border-color: #e2e8f0;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+      }
+
+      body {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f1f5f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+      }
+
+      /* Container Utama */
+      .form-card {
+        background: white;
+        width: 100%;
+        max-width: 450px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border: 2px solid #0099ff;
+      }
+
+      /* Header Form */
+      .form-header {
+        background: var(--blue-gradient);
+        padding: 20px;
+        color: white;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .header-icon {
+        background: rgba(255, 255, 255, 0.2);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+      }
+
+      .header-text h2 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+      .header-text p {
+        margin: 0;
+        font-size: 0.8rem;
+        opacity: 0.9;
+      }
+
+      .close-btn {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      /* Isi Form */
+      .form-body {
+        padding: 20px;
+      }
+
+      .label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: var(--text-main);
+        margin-bottom: 8px;
+      }
+
+      /* Pilihan Tipe Layanan */
+      .service-type-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .service-option {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .service-option.active {
+        border-color: #0099ff;
+        background-color: var(--light-blue);
+      }
+
+      .option-icon {
+        background: #f1f5f9;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin: 0 auto 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #0099ff;
+      }
+
+      .service-option b {
+        display: block;
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+      }
+      .service-option small {
+        color: var(--text-muted);
+        font-size: 0.7rem;
+      }
+
+      /* Input Styles */
+      .input-group {
+        margin-bottom: 15px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background-color: #f8fafc;
+        font-size: 0.9rem;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: #94a3b8;
+      }
+
+      textarea {
+        height: 80px;
+        resize: none;
+      }
+
+      /* Alamat Section */
+      .address-wrapper {
+        display: flex;
+        gap: 8px;
+      }
+
+      .gps-btn {
+        background: #0099ff;
+        color: white;
+        border: none;
+        width: 45px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .footer-note {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 8px;
+        line-height: 1.4;
+      }
+
+      /* Tombol Kirim */
+      .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: var(--blue-gradient);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-top: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 153, 255, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-card">
+      <div class="form-header">
+        <div class="header-icon">📄</div>
+        <div class="header-text">
+          <h2>Form Pemesanan</h2>
+          <p>Isi form di bawah untuk membuat pesanan perbaikan</p>
+        </div>
+        <div class="close-btn">
+          <a
+            href="home.html"
+            class="text-white-600 hover:text-blue-600 transition"
+            >✕</a
+          >
+        </div>
+      </div>
+
+      <div class="form-body">
+        <label class="label">Tipe Layanan</label>
+        <div class="service-type-grid">
+          <div class="service-option active">
+            <div class="option-icon">📍</div>
+            <b>Pickup Service</b>
+            <small>Teknisi ambil barang</small>
+          </div>
+          <div class="service-option">
+            <div class="option-icon">🏠</div>
+            <b>Drop-off Service</b>
+            <small>Antar ke tempat service</small>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="label">Nama Lengkap</label>
+          <input type="text" value="Rahasia" placeholder="Masukkan nama" />
+        </div>
+
+        <div class="input-group">
+          <label class="label">Nomor WhatsApp</label>
+          <input type="text" placeholder="Contoh: 08123456789" />
+        </div>
+
+        <div class="input-group">
+          <label class="label">Jenis Layanan</label>
+          <select>
+            <option>-- Pilih Jenis --</option>
+            <option>Perbaikan Laptop</option>
+            <option>Perbaikan Smartphone</option>
+            <option>Perbaikan Tablet</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label class="label">Deskripsi / Catatan</label>
+          <textarea
+            placeholder="Tuliskan detail pesanan atau masalah"
+          ></textarea>
+        </div>
+
+        <div class="input-group">
+          <label class="label">Tanggal Pemesanan</label>
+          <input type="text" placeholder="" />
+        </div>
+
+        <div class="input-group">
+          <label class="label">Alamat Penjemputan (Opsional)</label>
+          <div class="address-wrapper">
+            <input
+              type="text"
+              placeholder="Tulis alamat atau ambil lokasi GPS"
+            />
+            <button class="gps-btn">📍</button>
+          </div>
+          <p class="footer-note">
+            Teknisi akan datang ke alamat ini untuk mengambil barang elektronik
+            Anda
+          </p>
+        </div>
+
+        <button class="submit-btn">Kirim Pesanan</button>
+      </div>
+    </div>
+    <script type="module">
+      import { db, addDoc, collection, auth } from "./firebase-config.js";
+
+      // Pastikan tombol submit bukan tipe submit default form action, atau gunakan preventDefault
+      const submitBtn = document.querySelector(".submit-btn");
+      const inputs = document.querySelectorAll("input, select, textarea");
+
+      submitBtn.addEventListener("click", async () => {
+        // Ambil value dari input (Sesuaikan urutan index berdasarkan HTML Anda)
+        // input[0] = Tipe Layanan (Checkbox/Radio logic di HTML asli agak kompleks, kita ambil asumsi user klik div)
+
+        // Ambil elemen input spesifik
+        // Catatan: HTML Anda tidak memiliki ID pada input, jadi saya pakai querySelector order
+        // Sebaiknya tambahkan ID di HTML Anda, tapi ini cara cepat:
+
+        const nama = inputs[2].value; // Input ke-3 di HTML Anda (Nama Lengkap)
+        const whatsapp = inputs[3].value; // Input ke-4
+        const jenisLayanan = document.querySelector("select").value;
+        const deskripsi = document.querySelector("textarea").value;
+        const tanggal = inputs[4].value;
+        const alamat = inputs[5].value;
+
+        // Cek Login User (Opsional, ambil UID jika login)
+        const user = auth.currentUser;
+        const uid = user ? user.uid : "guest";
+
+        if (nama === "" || whatsapp === "") {
+          alert("Nama dan WhatsApp wajib diisi");
+          return;
+        }
+
+        try {
+          submitBtn.textContent = "Mengirim...";
+
+          await addDoc(collection(db, "orders"), {
+            userId: uid,
+            namaPelanggan: nama,
+            whatsapp: whatsapp,
+            jenisLayanan: jenisLayanan,
+            deskripsi: deskripsi,
+            tanggalPemesanan: tanggal,
+            alamat: alamat,
+            status: "Pending", // Status awal
+            createdAt: new Date(),
+          });
+
+          alert("Pesanan Berhasil Dikirim!");
+          window.location.href = "service.html";
+        } catch (e) {
+          console.error("Error: ", e);
+          alert("Gagal mengirim pesanan");
+          submitBtn.textContent = "Kirim Pesanan";
+        }
+      });
+
+      // Script UI bawaan untuk pemilihan tipe layanan (Visual)
+      const options = document.querySelectorAll(".service-option");
+      options.forEach((opt) => {
+        opt.addEventListener("click", () => {
+          options.forEach((o) => o.classList.remove("active"));
+          opt.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

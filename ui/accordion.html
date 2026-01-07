@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Accordion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS untuk simulasi animasi Radix UI dan custom styles */
+        .accordion-content {
+            /* Tinggi default 0 untuk hidden state */
+            max-height: 0; 
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .accordion-content.open {
+            /* Max height besar untuk open state (simulasi animate-accordion-down) */
+            max-height: 500px; 
+            padding-top: 0.5rem; /* pt-2 */
+            padding-bottom: 0.5rem; /* pb-4 */
+        }
+        
+        .accordion-trigger[data-state="open"] svg {
+            transform: rotate(180deg);
+        }
+
+        .accordion-trigger {
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 p-8">
+
+    <div class="max-w-xl mx-auto">
+        <h2 class="text-2xl font-bold mb-4">Frequently Asked Questions (FAQ)</h2>
+        
+        <div id="accordion-root" class="w-full" data-type="single" data-value="item-1"> 
+            
+            <div 
+                class="accordion-item border-b last:border-b-0 border-gray-200" 
+                data-slot="accordion-item" 
+                data-value="item-1"
+            >
+                <button
+                    data-slot="accordion-trigger"
+                    class="accordion-trigger focus-visible:ring-blue-500/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium outline-none hover:underline focus-visible:ring-[3px] w-full"
+                    data-state="open"
+                >
+                    Apa itu Layanan Perbaikan Service?
+                    <svg class="text-gray-500 pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                
+                <div 
+                    data-slot="accordion-content"
+                    class="accordion-content open text-sm text-gray-700"
+                    data-state="open"
+                >
+                    <div class="pb-4">
+                        <p>Layanan Service kami adalah platform untuk membantu Anda memesan perbaikan atau perawatan berbagai perangkat elektronik (laptop, smartphone, tablet, dll.) secara online, lengkap dengan pelacakan status secara real-time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div 
+                class="accordion-item border-b last:border-b-0 border-gray-200" 
+                data-slot="accordion-item" 
+                data-value="item-2"
+            >
+                <button
+                    data-slot="accordion-trigger"
+                    class="accordion-trigger focus-visible:ring-blue-500/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium outline-none hover:underline focus-visible:ring-[3px] w-full"
+                    data-state="closed"
+                >
+                    Bagaimana cara saya memesan layanan?
+                    <svg class="text-gray-500 pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                
+                <div 
+                    data-slot="accordion-content"
+                    class="accordion-content text-sm text-gray-700"
+                    data-state="closed"
+                >
+                    <div class="pb-4">
+                        <p>Anda dapat memesan layanan melalui formulir pemesanan di halaman Service. Isi detail kerusakan, informasi kontak Anda, dan kirimkan. Tim kami akan segera menghubungi Anda untuk langkah selanjutnya.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div 
+                class="accordion-item border-b last:border-b-0 border-gray-200" 
+                data-slot="accordion-item" 
+                data-value="item-3"
+            >
+                <button
+                    data-slot="accordion-trigger"
+                    class="accordion-trigger focus-visible:ring-blue-500/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium outline-none hover:underline focus-visible:ring-[3px] w-full"
+                    data-state="closed"
+                >
+                    Berapa lama waktu yang dibutuhkan untuk perbaikan?
+                    <svg class="text-gray-500 pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                
+                <div 
+                    data-slot="accordion-content"
+                    class="accordion-content text-sm text-gray-700"
+                    data-state="closed"
+                >
+                    <div class="pb-4">
+                        <p>Waktu perbaikan bervariasi tergantung jenis kerusakan dan ketersediaan suku cadang. Setelah diagnosis, kami akan memberikan perkiraan waktu penyelesaian (Estimated Completion) yang dapat Anda lacak di halaman Status Layanan.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionRoot = document.getElementById('accordion-root');
+            const accordionItems = accordionRoot.querySelectorAll('.accordion-item');
+            
+            // Default mode Radix UI (single/multiple)
+            const type = accordionRoot.getAttribute('data-type') || 'single';
+
+            accordionItems.forEach(item => {
+                const trigger = item.querySelector('.accordion-trigger');
+                const content = item.querySelector('.accordion-content');
+                
+                // Set initial state based on data-state attribute
+                const initialState = trigger.getAttribute('data-state') === 'open';
+                if (initialState) {
+                    content.classList.add('open');
+                } else {
+                    content.classList.remove('open');
+                }
+
+                trigger.addEventListener('click', () => {
+                    const isCurrentlyOpen = trigger.getAttribute('data-state') === 'open';
+                    
+                    if (isCurrentlyOpen) {
+                        // Close the item
+                        trigger.setAttribute('data-state', 'closed');
+                        content.classList.remove('open');
+                    } else {
+                        // Handle 'single' type (close others)
+                        if (type === 'single') {
+                            accordionItems.forEach(otherItem => {
+                                if (otherItem !== item) {
+                                    const otherTrigger = otherItem.querySelector('.accordion-trigger');
+                                    const otherContent = otherItem.querySelector('.accordion-content');
+                                    otherTrigger.setAttribute('data-state', 'closed');
+                                    otherContent.classList.remove('open');
+                                }
+                            });
+                        }
+
+                        // Open the item
+                        trigger.setAttribute('data-state', 'open');
+                        content.classList.add('open');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

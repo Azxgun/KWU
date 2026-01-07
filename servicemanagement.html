@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manajemen Layanan - Projek ABS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .card-shadow {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+      }
+      .select-trigger {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevrons-up-down'%3E%3Cpath d='m7 15 5 5 5-5'/%3E%3Cpath d='m7 9 5-5 5 5'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+      }
+      .dialog-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .dialog-content {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        width: 90%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <aside
+      class="w-64 bg-gradient-to-b from-blue-600 to-cyan-400 text-white hidden lg:block fixed h-full shadow-lg z-20"
+    >
+      <div class="p-6">
+        <h2 class="text-white text-2xl font-bold mb-8">ABS Admin</h2>
+        <nav class="space-y-2">
+          <a
+            href="admin.html"
+            class="block w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition hover:text-white flex items-center gap-3"
+          >
+            <span>📊</span> Dashboard
+          </a>
+          <a
+            href="servicemanagement.html"
+            class="block w-full px-4 py-3 bg-white/20 rounded-lg font-semibold text-white flex items-center gap-3"
+          >
+            <span>🛠</span> Services
+          </a>
+          <a
+            href="usermanagement.html"
+            class="block w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition hover:text-white flex items-center gap-3"
+          >
+            <span>👥</span> Users
+          </a>
+          <a
+            href="Analytics.html"
+            class="block w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition hover:text-white flex items-center gap-3"
+          >
+            <span>📈</span> Analytics
+          </a>
+          <a
+            href="settingspage.html"
+            class="block w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition hover:text-white flex items-center gap-3"
+          >
+            <span>⚙️</span> Settings
+          </a>
+        </nav>
+        <div class="mt-10 pt-8 border-t border-white/20">
+          <button
+            id="logout-btn"
+            class="flex w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition items-center gap-3"
+          >
+            <span>🚪</span> Logout
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="flex-1 lg:ml-64">
+      <header class="bg-white shadow-sm sticky top-0 z-10 border-b">
+        <div class="flex items-center justify-between px-8 py-4">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold"
+            >
+              A
+            </div>
+            <div>
+              <h1 class="text-xl font-semibold">Projek ABS</h1>
+              <p class="text-xs text-gray-500">Service Management</p>
+            </div>
+          </div>
+          <div class="hidden sm:block text-right">
+            <p class="font-medium text-sm">Admin Access</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-4 sm:p-6 lg:p-8">
+        <header class="mb-6">
+          <h1 class="text-3xl font-bold text-gray-900">Manajemen Layanan</h1>
+          <p class="text-gray-500">
+            Kelola semua pesanan service yang masuk ke sistem.
+          </p>
+        </header>
+
+        <div class="bg-white rounded-xl card-shadow overflow-hidden">
+          <div class="p-4 border-b border-gray-200 sm:p-6">
+            <div
+              class="flex flex-col md:flex-row justify-between items-center gap-4"
+            >
+              <div class="relative w-full md:max-w-xs">
+                <input
+                  id="search-input"
+                  type="text"
+                  placeholder="Cari Nama / ID..."
+                  class="flex h-10 w-full rounded-lg border border-gray-300 px-3 py-2 pl-3 text-sm"
+                />
+              </div>
+              <div class="flex gap-3 w-full md:w-auto">
+                <button
+                  id="add-service-btn"
+                  class="flex items-center justify-center h-10 px-4 rounded-lg text-white font-medium bg-gradient-blue hover:opacity-90 transition shadow-md"
+                >
+                  + Tambah Layanan
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    ID
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Pelanggan
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Layanan
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Tanggal
+                  </th>
+                  <th
+                    class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Aksi
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                id="services-table-body"
+                class="bg-white divide-y divide-gray-200"
+              >
+                <tr>
+                  <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                    Memuat data...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="add-service-dialog" class="dialog-overlay">
+        <div class="dialog-content">
+          <div
+            class="p-6 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-lg font-semibold text-gray-900">
+              Tambah Pesanan Baru
+            </h3>
+            <button
+              type="button"
+              class="close-add-modal text-gray-400 hover:text-gray-600"
+            >
+              ✕
+            </button>
+          </div>
+
+          <form id="add-service-form" class="p-6 space-y-4">
+            <div class="space-y-2">
+              <label class="text-sm font-medium"
+                >Nama Pelanggan <span class="text-red-500">*</span></label
+              >
+              <input
+                id="new-namaLengkap"
+                type="text"
+                placeholder="Masukkan nama pelanggan"
+                class="w-full h-10 px-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium"
+                >No WhatsApp <span class="text-red-500">*</span></label
+              >
+              <input
+                id="new-noWhatsApp"
+                type="tel"
+                placeholder="08xxxxxxxx"
+                class="w-full h-10 px-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium"
+                >Jenis Layanan <span class="text-red-500">*</span></label
+              >
+              <select
+                id="new-jenisLayanan"
+                class="select-trigger w-full h-10 px-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                required
+              >
+                <option value="" disabled selected>Pilih Layanan</option>
+                <option value="Perbaikan Laptop">Perbaikan Laptop</option>
+                <option value="Perbaikan Smartphone">
+                  Perbaikan Smartphone
+                </option>
+                <option value="Ganti Layar">Ganti Layar</option>
+                <option value="Install Ulang OS">Install Ulang OS</option>
+                <option value="Data Recovery">Data Recovery</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium">Deskripsi / Keluhan</label>
+              <textarea
+                id="new-deskripsi"
+                placeholder="Jelaskan detail kerusakan..."
+                class="w-full px-3 py-2 rounded-lg border border-gray-300 min-h-[80px] focus:ring-2 focus:ring-blue-500 outline-none"
+              ></textarea>
+            </div>
+
+            <div
+              class="pt-4 flex justify-end gap-3 border-t border-gray-100 mt-4"
+            >
+              <button
+                type="button"
+                class="close-add-modal px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition"
+              >
+                Batal
+              </button>
+              <button
+                type="submit"
+                class="px-4 py-2 rounded-lg text-white font-medium bg-gradient-blue hover:opacity-90 transition shadow-md"
+              >
+                Simpan Data
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="edit-service-dialog" class="dialog-overlay">
+        <div class="dialog-content">
+          <div class="p-6 border-b border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900">
+              Update Status Pesanan
+            </h3>
+            <p id="edit-id-display" class="text-xs text-gray-500 mt-1">
+              ID: ...
+            </p>
+          </div>
+          <form id="edit-service-form" class="p-6 space-y-4">
+            <input type="hidden" id="edit-doc-id" />
+            <div class="space-y-2">
+              <label class="text-sm font-medium">Status Pengerjaan</label>
+              <select
+                id="edit-status"
+                class="select-trigger w-full h-10 px-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="Pending">Pending</option>
+                <option value="In Progress">
+                  In Progress (Sedang Dikerjakan)
+                </option>
+                <option value="Completed">Completed (Selesai)</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium"
+                >Estimasi Selesai (Opsional)</label
+              >
+              <input
+                id="edit-estimasi"
+                type="text"
+                placeholder="Contoh: 2 Hari lagi"
+                class="w-full h-10 px-3 rounded-lg border border-gray-300"
+              />
+            </div>
+
+            <div
+              class="pt-4 flex justify-end gap-3 border-t border-gray-100 mt-4"
+            >
+              <button
+                type="button"
+                id="cancel-edit-service"
+                class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50"
+              >
+                Batal
+              </button>
+              <button
+                type="button"
+                id="submit-edit-service"
+                class="px-4 py-2 rounded-lg text-white font-medium bg-gradient-blue hover:opacity-90"
+              >
+                Update Status
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      import {
+        auth,
+        db,
+        collection,
+        addDoc,
+        getDocs,
+        doc,
+        updateDoc,
+        signOut,
+        onAuthStateChanged,
+      } from "./firebase-config.js";
+
+      // --- REFERENSI ELEMENT HTML ---
+      const tableBody = document.getElementById("services-table-body");
+      const searchInput = document.getElementById("search-input");
+
+      // Modal Add
+      const addDialog = document.getElementById("add-service-dialog");
+      const addBtn = document.getElementById("add-service-btn");
+      const addForm = document.getElementById("add-service-form");
+      const closeAddBtns = document.querySelectorAll(".close-add-modal");
+
+      // Modal Edit
+      const editDialog = document.getElementById("edit-service-dialog");
+      const editForm = document.getElementById("edit-service-form");
+
+      let allOrders = []; // Menyimpan data lokal untuk search
+
+      // --- 1. CEK LOGIN ADMIN ---
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+        } else {
+          // Jika login, ambil data
+          fetchOrders();
+        }
+      });
+
+      // Logout
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+
+      // --- 2. FETCH & RENDER DATA ---
+      async function fetchOrders() {
+        tableBody.innerHTML =
+          '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Mengambil data terbaru...</td></tr>';
+        try {
+          const querySnapshot = await getDocs(collection(db, "orders"));
+          allOrders = [];
+
+          querySnapshot.forEach((doc) => {
+            // Masukkan ID Firestore ke dalam object data
+            allOrders.push({ firestoreId: doc.id, ...doc.data() });
+          });
+
+          // Urutkan: Terbaru di atas (berdasarkan createdAt atau tanggalPemesanan)
+          allOrders.sort((a, b) => {
+            const dateA =
+              a.createdAt?.seconds || new Date(a.tanggalPemesanan).getTime();
+            const dateB =
+              b.createdAt?.seconds || new Date(b.tanggalPemesanan).getTime();
+            return dateB - dateA;
+          });
+
+          renderTable(allOrders);
+        } catch (e) {
+          console.error("Error fetching data:", e);
+          tableBody.innerHTML =
+            '<tr><td colspan="6" class="text-center text-red-500 py-4">Gagal memuat data. Cek koneksi internet.</td></tr>';
+        }
+      }
+
+      function renderTable(data) {
+        tableBody.innerHTML = "";
+        if (data.length === 0) {
+          tableBody.innerHTML =
+            '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Belum ada pesanan layanan.</td></tr>';
+          return;
+        }
+
+        data.forEach((service) => {
+          const row = document.createElement("tr");
+          row.className =
+            "hover:bg-gray-50 transition-colors border-b last:border-b-0";
+
+          // Style Badge Status
+          let badgeClass = "bg-gray-100 text-gray-800";
+          if (service.status === "Completed")
+            badgeClass = "bg-green-100 text-green-800 border border-green-200";
+          if (service.status === "In Progress")
+            badgeClass = "bg-blue-100 text-blue-800 border border-blue-200";
+          if (service.status === "Pending")
+            badgeClass =
+              "bg-yellow-100 text-yellow-800 border border-yellow-200";
+
+          // Format Tanggal (Support format string "YYYY-MM-DD" atau Firestore Timestamp)
+          let dateDisplay = service.tanggalPemesanan;
+          if (service.createdAt && service.createdAt.seconds) {
+            dateDisplay = new Date(
+              service.createdAt.seconds * 1000
+            ).toLocaleDateString("id-ID");
+          }
+
+          row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">#${service.firestoreId
+                      .substring(0, 6)
+                      .toUpperCase()}</td>
+                    <td class="px-6 py-4">
+                        <div class="text-sm font-medium text-gray-900">${
+                          service.namaPelanggan || "-"
+                        }</div>
+                        <div class="text-xs text-gray-500 flex items-center gap-1">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.135l-2.54 1.815a4.116 4.116 0 003.707 3.707l1.815-2.54a1 1 0 011.135-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C7.82 21 3 16.18 3 10V5z"></path></svg>
+                            ${service.whatsapp || service.noWhatsApp || "-"}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-900 font-medium">${
+                      service.jenisLayanan || "-"
+                    }</td>
+                    <td class="px-6 py-4">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${badgeClass}">
+                            ${service.status}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${dateDisplay}</td>
+                    <td class="px-6 py-4 text-right">
+                        <button class="edit-btn text-blue-600 hover:text-blue-800 font-medium text-sm border border-blue-200 hover:bg-blue-50 px-3 py-1 rounded transition" 
+                            data-id="${service.firestoreId}" 
+                            data-status="${service.status}"
+                            data-est="${service.estimatedCompletion || ""}">
+                            Update
+                        </button>
+                    </td>
+                `;
+          tableBody.appendChild(row);
+        });
+
+        // Re-attach Event Listeners untuk tombol Edit
+        document.querySelectorAll(".edit-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            openEditModal(
+              btn.getAttribute("data-id"),
+              btn.getAttribute("data-status"),
+              btn.getAttribute("data-est")
+            );
+          });
+        });
+      }
+
+      // --- 3. FITUR ADD SERVICE (PERBAIKAN UTAMA DI SINI) ---
+
+      // Buka Modal
+      addBtn.addEventListener("click", () => {
+        addDialog.style.display = "flex";
+      });
+
+      // Tutup Modal (Tombol Silang & Batal)
+      closeAddBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          addDialog.style.display = "none";
+          addForm.reset();
+        });
+      });
+
+      // Handle Submit Form
+      addForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Mencegah reload halaman
+
+        // Ambil tombol submit untuk efek loading
+        const submitBtn = addForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = "Menyimpan...";
+        submitBtn.disabled = true;
+
+        try {
+          // Ambil value dari form
+          const nama = document.getElementById("new-namaLengkap").value;
+          const wa = document.getElementById("new-noWhatsApp").value;
+          const jenis = document.getElementById("new-jenisLayanan").value;
+          const deskripsi = document.getElementById("new-deskripsi").value;
+
+          // Simpan ke Firestore
+          await addDoc(collection(db, "orders"), {
+            namaPelanggan: nama,
+            whatsapp: wa, // Samakan field dengan yang dipakai di Service.html (tampilan user)
+            jenisLayanan: jenis,
+            deskripsi: deskripsi,
+            status: "Pending", // Status Default
+            tanggalPemesanan: new Date().toISOString().split("T")[0], // YYYY-MM-DD
+            createdAt: new Date(),
+            userId: "admin_entry", // Penanda ini inputan admin
+            estimatedCompletion: "-",
+          });
+
+          alert("✅ Layanan berhasil ditambahkan!");
+          addDialog.style.display = "none";
+          addForm.reset();
+
+          // Refresh Tabel
+          fetchOrders();
+        } catch (error) {
+          console.error("Error adding document: ", error);
+          alert("❌ Gagal menyimpan data: " + error.message);
+        } finally {
+          // Kembalikan tombol seperti semula
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+
+      // --- 4. FITUR EDIT SERVICE ---
+
+      function openEditModal(id, status, est) {
+        document.getElementById("edit-doc-id").value = id;
+        document.getElementById("edit-id-display").innerText =
+          "ID Pesanan: " + id;
+        document.getElementById("edit-status").value = status;
+        document.getElementById("edit-estimasi").value = est;
+        editDialog.style.display = "flex";
+      }
+
+      document
+        .getElementById("cancel-edit-service")
+        .addEventListener("click", () => {
+          editDialog.style.display = "none";
+        });
+
+      document
+        .getElementById("submit-edit-service")
+        .addEventListener("click", async () => {
+          const id = document.getElementById("edit-doc-id").value;
+          const newStatus = document.getElementById("edit-status").value;
+          const newEst = document.getElementById("edit-estimasi").value;
+          const btn = document.getElementById("submit-edit-service");
+
+          btn.innerText = "Updating...";
+          try {
+            const orderRef = doc(db, "orders", id);
+            await updateDoc(orderRef, {
+              status: newStatus,
+              estimatedCompletion: newEst,
+            });
+
+            alert("Status berhasil diperbarui!");
+            editDialog.style.display = "none";
+            fetchOrders(); // Refresh table
+          } catch (err) {
+            alert("Gagal update: " + err.message);
+          } finally {
+            btn.innerText = "Update Status";
+          }
+        });
+
+      // --- 5. FITUR SEARCH ---
+      searchInput.addEventListener("input", (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = allOrders.filter(
+          (o) =>
+            (o.namaPelanggan && o.namaPelanggan.toLowerCase().includes(term)) ||
+            (o.firestoreId && o.firestoreId.toLowerCase().includes(term)) ||
+            (o.jenisLayanan && o.jenisLayanan.toLowerCase().includes(term))
+        );
+        renderTable(filtered);
+      });
+    </script>
+  </body>
+</html>

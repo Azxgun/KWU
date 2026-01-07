@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulir Pemesanan Perbaikan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* CSS Tambahan untuk gradien dan elemen khusus */
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+      }
+      .card-shadow {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      }
+      /* Style untuk Select, meniru component library */
+      .select-trigger {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevrons-up-down'%3E%3Cpath d='m7 15 5 5 5-5'/%3E%3Cpath d='m7 9 5-5 5 5'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-100">
+    <div
+      id="repair-form-wrapper"
+      class="min-h-screen flex items-center justify-center px-4 py-12"
+    >
+      <div
+        class="w-full max-w-lg bg-white rounded-2xl shadow-2xl border-none overflow-hidden card-shadow"
+      >
+        <header id="dialog-header" class="relative px-6 py-4 bg-gradient-blue">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center"
+                style="background-color: rgba(255, 255, 255, 0.2)"
+              >
+                <svg
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-white text-xl m-0 font-semibold">
+                  Form Pemesanan
+                </h2>
+                <p class="text-white/80 text-sm mt-1">
+                  Isi form di bawah untuk membuat pesanan perbaikan
+                </p>
+              </div>
+            </div>
+            <button
+              id="close-button"
+              onclick="alert('Simulasi menutup form')"
+              class="text-white hover:bg-white/20 rounded-full p-1 transition-colors"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <form id="repair-order-form" class="px-6 py-6 space-y-5">
+          <div class="space-y-2">
+            <label
+              for="namaLengkap"
+              class="text-sm font-medium leading-none text-gray-700"
+            >
+              Nama Lengkap
+            </label>
+            <input
+              id="namaLengkap"
+              name="namaLengkap"
+              type="text"
+              placeholder="Masukkan nama Anda"
+              class="flex h-10 w-full rounded-lg border border-gray-300 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              required
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label
+              for="noWhatsApp"
+              class="text-sm font-medium leading-none text-gray-700"
+            >
+              Nomor WhatsApp
+            </label>
+            <input
+              id="noWhatsApp"
+              name="noWhatsApp"
+              type="tel"
+              placeholder="Contoh: 08123456789"
+              class="flex h-10 w-full rounded-lg border border-gray-300 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              required
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label
+              for="jenisLayanan"
+              class="text-sm font-medium leading-none text-gray-700"
+            >
+              Jenis Layanan
+            </label>
+            <select
+              id="jenisLayanan"
+              name="jenisLayanan"
+              class="select-trigger flex h-10 w-full rounded-lg border border-gray-300 bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+              required
+            >
+              <option value="" disabled selected>-- Pilih Jenis --</option>
+              <option value="perbaikan-laptop">Perbaikan Laptop</option>
+              <option value="perbaikan-smartphone">Perbaikan Smartphone</option>
+              <option value="perbaikan-tablet">Perbaikan Tablet</option>
+              <option value="perbaikan-pc">Perbaikan PC/Desktop</option>
+              <option value="ganti-layar">Ganti Layar/Screen</option>
+              <option value="ganti-baterai">Ganti Baterai</option>
+              <option value="upgrade-hardware">Upgrade Hardware</option>
+              <option value="instalasi-software">Instalasi Software</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label
+              for="deskripsi"
+              class="text-sm font-medium leading-none text-gray-700"
+            >
+              Deskripsi / Catatan
+            </label>
+            <textarea
+              id="deskripsi"
+              name="deskripsi"
+              placeholder="Tuliskan detail pesanan atau masalah"
+              class="flex w-full rounded-lg border border-gray-300 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[100px] resize-none"
+            ></textarea>
+          </div>
+
+          <div class="space-y-2">
+            <label
+              for="tanggalPemesanan"
+              class="text-sm font-medium leading-none text-gray-700"
+            >
+              Tanggal Pemesanan
+            </label>
+            <input
+              id="tanggalPemesanan"
+              name="tanggalPemesanan"
+              type="date"
+              class="flex h-10 w-full rounded-lg border border-gray-300 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              required
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label
+              for="lokasi"
+              class="text-sm font-medium leading-none text-gray-700"
+            >
+              Alamat / Lokasi (Opsional)
+            </label>
+            <div class="flex gap-2">
+              <input
+                id="lokasi"
+                name="lokasi"
+                type="text"
+                placeholder="Tulis alamat atau ambil lokasi GPS"
+                class="rounded-lg border border-gray-300 flex-1 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              />
+              <button
+                type="button"
+                id="get-location-btn"
+                class="rounded-lg px-4 text-white font-medium transition-all flex items-center justify-center bg-gradient-blue hover:opacity-90 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                title="Ambil lokasi GPS saya"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.99 1.99 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+              </button>
+              <a
+                id="map-link-btn"
+                href="#"
+                target="_blank"
+                class="hidden rounded-lg px-4 border border-[#007bff] text-[#007bff] hover:bg-[#007bff] hover:text-white transition-colors flex items-center justify-center"
+                title="Lihat di Google Maps"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.99 1.99 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+            <p class="text-xs text-gray-500">
+              Tulis alamat manual atau klik tombol GPS untuk mengambil lokasi
+              Anda saat ini
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full rounded-lg py-3 text-white font-semibold flex items-center justify-center mt-6 bg-gradient-blue hover:opacity-90 transition-opacity"
+            style="
+              background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+            "
+          >
+            Kirim Pesanan
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("repair-order-form");
+        const getLocationBtn = document.getElementById("get-location-btn");
+        const lokasiInput = document.getElementById("lokasi");
+        const mapLinkBtn = document.getElementById("map-link-btn");
+
+        let currentLatitude = null;
+        let currentLongitude = null;
+
+        // Fungsi untuk menampilkan link Google Maps
+        function updateMapLink(lokasi, lat, long) {
+          if (lokasi) {
+            mapLinkBtn.classList.remove("hidden");
+            let url = "";
+            if (lat && long) {
+              // Menggunakan koordinat jika tersedia
+              url = `https://www.google.com/maps/search/?api=1&query=${lat},${long}`;
+            } else {
+              // Menggunakan alamat/teks input
+              url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                lokasi
+              )}`;
+            }
+            mapLinkBtn.href = url;
+          } else {
+            mapLinkBtn.classList.add("hidden");
+            mapLinkBtn.href = "#";
+          }
+        }
+
+        // Memperbarui link peta setiap kali input lokasi berubah
+        lokasiInput.addEventListener("input", (e) => {
+          // Hapus koordinat jika pengguna mengetik manual
+          currentLatitude = null;
+          currentLongitude = null;
+          updateMapLink(e.target.value, null, null);
+        });
+
+        // 1. Fungsionalitas Geolocation (handleGetLocation)
+        getLocationBtn.addEventListener("click", () => {
+          if (!navigator.geolocation) {
+            alert("Error: Browser Anda tidak mendukung geolocation");
+            return;
+          }
+
+          // Simulasi isGettingLocation
+          getLocationBtn.disabled = true;
+          getLocationBtn.textContent = "Mengambil...";
+          getLocationBtn.classList.add("bg-gray-400", "cursor-wait");
+
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              currentLatitude = position.coords.latitude;
+              currentLongitude = position.coords.longitude;
+              const lokasiText = `${currentLatitude.toFixed(
+                6
+              )}, ${currentLongitude.toFixed(6)}`;
+
+              lokasiInput.value = lokasiText;
+              alert("Lokasi berhasil diambil: " + lokasiText);
+
+              // Update UI
+              getLocationBtn.disabled = false;
+              getLocationBtn.innerHTML =
+                '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.99 1.99 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>';
+              getLocationBtn.classList.remove("bg-gray-400", "cursor-wait");
+
+              updateMapLink(lokasiText, currentLatitude, currentLongitude);
+            },
+            (error) => {
+              let errorMessage = "Gagal mengambil lokasi. ";
+              switch (error.code) {
+                case error.PERMISSION_DENIED:
+                  errorMessage +=
+                    "Izin lokasi ditolak. Silakan aktifkan izin lokasi di pengaturan browser.";
+                  break;
+                case error.POSITION_UNAVAILABLE:
+                  errorMessage += "Informasi lokasi tidak tersedia.";
+                  break;
+                case error.TIMEOUT:
+                  errorMessage +=
+                    "Waktu permintaan lokasi habis. Silakan coba lagi.";
+                  break;
+                default:
+                  errorMessage += "Terjadi kesalahan yang tidak diketahui.";
+              }
+              alert("Error: " + errorMessage);
+
+              // Reset UI
+              getLocationBtn.disabled = false;
+              getLocationBtn.innerHTML =
+                '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.99 1.99 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>';
+              getLocationBtn.classList.remove("bg-gray-400", "cursor-wait");
+            },
+            {
+              enableHighAccuracy: true,
+              timeout: 10000,
+              maximumAge: 0,
+            }
+          );
+        });
+
+        // 2. Fungsionalitas Submit Form (handleSubmit)
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = {
+            namaLengkap: document.getElementById("namaLengkap").value,
+            noWhatsApp: document.getElementById("noWhatsApp").value,
+            jenisLayanan: document.getElementById("jenisLayanan").value,
+            deskripsi: document.getElementById("deskripsi").value,
+            tanggalPemesanan: document.getElementById("tanggalPemesanan").value,
+            lokasi: lokasiInput.value,
+            latitude: currentLatitude,
+            longitude: currentLongitude,
+          };
+
+          // Validasi (sederhana)
+          if (
+            !formData.namaLengkap ||
+            !formData.noWhatsApp ||
+            !formData.jenisLayanan ||
+            !formData.tanggalPemesanan
+          ) {
+            alert(
+              "Error: Mohon lengkapi semua field yang wajib diisi (Nama, WhatsApp, Layanan, Tanggal)."
+            );
+            return;
+          }
+
+          console.log("Data Pesanan:", formData);
+
+          // Simulasi toast.success dan onClose()
+          alert(
+            "Pesanan berhasil dikirim! Cek halaman Service untuk melihat status pesanan Anda."
+          );
+
+          // Reset form
+          form.reset();
+          lokasiInput.value = "";
+          currentLatitude = null;
+          currentLongitude = null;
+          updateMapLink("", null, null);
+        });
+      });
+    </script>
+  </body>
+</html>

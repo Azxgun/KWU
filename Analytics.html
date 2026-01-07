@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Dashboard - Projek ABS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      .card-shadow {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <aside
+      class="w-64 bg-gradient-to-b from-blue-600 to-cyan-400 text-white hidden lg:block fixed h-full shadow-lg z-20"
+    >
+      <div class="p-6">
+        <h2 class="text-white text-2xl font-bold mb-8">ABS Admin</h2>
+        <nav class="space-y-2">
+          <a
+            href="admin.html"
+            class="block w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition hover:text-white flex items-center gap-3"
+          >
+            <span>📊</span> Dashboard
+          </a>
+
+          <a
+            href="servicemanagement.html"
+            class="block w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition hover:text-white flex items-center gap-3"
+          >
+            <span>🛠</span> Services
+          </a>
+
+          <a
+            href="usermanagement.html"
+            class="block w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition hover:text-white flex items-center gap-3"
+          >
+            <span>👥</span> Users
+          </a>
+
+          <a
+            href="Analytics.html"
+            class="block w-full px-4 py-3 bg-white/20 rounded-lg font-semibold text-white flex items-center gap-3"
+          >
+            <span>📈</span> Analytics
+          </a>
+
+          <a
+            href="settingspage.html"
+            class="block w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition hover:text-white flex items-center gap-3"
+          >
+            <span>⚙️</span> Settings
+          </a>
+        </nav>
+        <div class="mt-10 pt-8 border-t border-white/20">
+          <button
+            id="logout-btn"
+            class="flex w-full px-4 py-3 text-white/70 hover:bg-white/10 rounded-lg transition items-center gap-3"
+          >
+            <span>🚪</span> Logout
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="flex-1 lg:ml-64">
+      <header class="bg-white shadow-sm sticky top-0 z-10 border-b">
+        <div class="flex items-center justify-between px-8 py-4">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold"
+            >
+              A
+            </div>
+            <div>
+              <h1 class="text-xl font-semibold">Projek ABS</h1>
+              <p class="text-xs text-gray-500">Analytics Dashboard</p>
+            </div>
+          </div>
+          <div class="hidden sm:block text-right">
+            <p class="font-medium text-sm" id="header-admin-name">Admin User</p>
+            <p class="text-xs text-gray-500">admin@projekabs.com</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-4 sm:p-6 lg:p-8 space-y-8">
+        <div>
+          <h1 class="text-2xl font-bold text-slate-900">Analytics Overview</h1>
+          <p class="text-slate-500">
+            Laporan performa layanan dan pendapatan Anda (Real-time).
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-slate-500"
+                >Total Revenue</span
+              >
+              <span
+                class="text-emerald-500 bg-emerald-50 px-2 py-1 rounded text-xs font-bold"
+                >Est</span
+              >
+            </div>
+            <div class="text-2xl font-bold text-gray-800" id="total-revenue">
+              Rp 0
+            </div>
+            <p class="text-xs text-gray-400 mt-1">*Asumsi Rp 150rb/order</p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-slate-500"
+                >Active Users</span
+              >
+              <span
+                class="text-blue-500 bg-blue-50 px-2 py-1 rounded text-xs font-bold"
+                >Live</span
+              >
+            </div>
+            <div class="text-2xl font-bold text-gray-800" id="active-users">
+              0
+            </div>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-slate-500"
+                >Services Done</span
+              >
+              <span
+                class="text-amber-500 bg-amber-50 px-2 py-1 rounded text-xs font-bold"
+                >Completed</span
+              >
+            </div>
+            <div class="text-2xl font-bold text-gray-800" id="services-done">
+              0
+            </div>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-slate-500"
+                >Avg. Rating</span
+              >
+              <span class="text-slate-500 text-xs">Overall</span>
+            </div>
+            <div class="text-2xl font-bold text-gray-800">4.8 / 5.0</div>
+            <p class="text-xs text-gray-400 mt-1">Berdasarkan 0 ulasan</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <h3 class="font-bold mb-4">Revenue Trend (6 Bulan Terakhir)</h3>
+            <div class="h-64 relative w-full">
+              <canvas id="revenueChart"></canvas>
+            </div>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <h3 class="font-bold mb-4">Service Popularity</h3>
+            <div id="popularity-container" class="space-y-6">
+              <p class="text-center text-gray-400 py-10">Memuat data...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      import {
+        auth,
+        db,
+        collection,
+        getDocs,
+        onAuthStateChanged,
+        signOut,
+        getDoc,
+        doc,
+      } from "./firebase-config.js";
+
+      // Elements
+      const revenueEl = document.getElementById("total-revenue");
+      const usersEl = document.getElementById("active-users");
+      const servicesEl = document.getElementById("services-done");
+      const popularityContainer = document.getElementById(
+        "popularity-container"
+      );
+      const headerName = document.getElementById("header-admin-name");
+
+      // Chart Instance
+      let revenueChartInstance = null;
+
+      // 1. Auth Check
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          // Get Admin Name
+          const docSnap = await getDoc(doc(db, "users", user.uid));
+          if (docSnap.exists() && docSnap.data().role === "admin") {
+            headerName.innerText = docSnap.data().nama || "Admin";
+            loadAnalyticsData();
+          } else {
+            alert("Akses Ditolak.");
+            window.location.href = "home.html";
+          }
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      // Logout
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+
+      // 2. Main Logic: Fetch & Process Data
+      async function loadAnalyticsData() {
+        try {
+          // A. Fetch Users
+          const usersSnap = await getDocs(collection(db, "users"));
+          usersEl.innerText = usersSnap.size;
+
+          // B. Fetch Orders
+          const ordersSnap = await getDocs(collection(db, "orders"));
+
+          let completedCount = 0;
+          let serviceCounts = {};
+          let monthlyRevenue = new Array(6).fill(0); // 0 = Bulan ini, 5 = 5 bulan lalu (dibalik saat render)
+
+          const today = new Date();
+          const currentMonth = today.getMonth(); // 0-11
+
+          ordersSnap.forEach((doc) => {
+            const data = doc.data();
+
+            // Hitung Service Popularity (Semua status)
+            const type = data.jenisLayanan || "Lainnya";
+            serviceCounts[type] = (serviceCounts[type] || 0) + 1;
+
+            // Hitung Revenue & Chart (Hanya Completed)
+            if (data.status === "Completed") {
+              completedCount++;
+
+              // Parse Tanggal
+              let orderDate = new Date();
+              if (data.tanggalPemesanan) {
+                orderDate = new Date(data.tanggalPemesanan);
+              } else if (data.createdAt) {
+                orderDate = new Date(data.createdAt.seconds * 1000);
+              }
+
+              // Cek selisih bulan untuk Chart
+              // Logic sederhana: Hitung selisih bulan dari sekarang
+              const diffMonths =
+                (today.getFullYear() - orderDate.getFullYear()) * 12 +
+                (currentMonth - orderDate.getMonth());
+
+              // Jika order dalam 6 bulan terakhir (0 s/d 5)
+              if (diffMonths >= 0 && diffMonths < 6) {
+                // Masukkan ke array (index 0 = bulan ini, index 5 = 5 bulan lalu)
+                // Kita pakai harga asumsi Rp 150.000
+                monthlyRevenue[diffMonths] += 150000;
+              }
+            }
+          });
+
+          // C. Update Text UI
+          servicesEl.innerText = completedCount;
+          const totalRevenue = completedCount * 150000;
+          revenueEl.innerText = "Rp " + totalRevenue.toLocaleString("id-ID");
+
+          // D. Render Popularity Bar
+          renderPopularity(serviceCounts, ordersSnap.size);
+
+          // E. Render Chart
+          renderChart(monthlyRevenue);
+        } catch (error) {
+          console.error("Analytics Error:", error);
+        }
+      }
+
+      // 3. Render Service Popularity
+      function renderPopularity(counts, total) {
+        popularityContainer.innerHTML = "";
+
+        // Urutkan dari terbanyak
+        const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+        // Warna gradient random untuk variasi
+        const gradients = [
+          "from-emerald-500 to-teal-400",
+          "from-blue-500 to-cyan-400",
+          "from-amber-500 to-orange-400",
+          "from-purple-500 to-pink-400",
+        ];
+
+        if (sorted.length === 0) {
+          popularityContainer.innerHTML =
+            '<p class="text-center text-gray-400">Belum ada data layanan.</p>';
+          return;
+        }
+
+        sorted.forEach((item, index) => {
+          const name = item[0];
+          const count = item[1];
+          const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
+          const gradient = gradients[index % gradients.length];
+
+          const html = `
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="font-medium text-gray-700">${name}</span>
+                            <span class="text-slate-500">${percentage}% (${count})</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r ${gradient}" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                `;
+          popularityContainer.insertAdjacentHTML("beforeend", html);
+        });
+      }
+
+      // 4. Render Chart.js
+      function renderChart(revenueData) {
+        // Data di array revenueData urutannya: [Bulan Ini, 1 Bln Lalu, 2 Bln Lalu, ...]
+        // Kita perlu balik urutannya agar grafik berjalan dari Kiri (Lalu) ke Kanan (Sekarang)
+        const chartData = revenueData.reverse();
+
+        // Buat Label Bulan (Contoh: ["Agust", "Sept", "Okt", ...])
+        const labels = [];
+        const monthNames = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "Mei",
+          "Jun",
+          "Jul",
+          "Agust",
+          "Sept",
+          "Okt",
+          "Nov",
+          "Des",
+        ];
+        const today = new Date();
+
+        for (let i = 5; i >= 0; i--) {
+          const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
+          labels.push(monthNames[d.getMonth()]);
+        }
+
+        const ctx = document.getElementById("revenueChart").getContext("2d");
+
+        // Destroy jika sudah ada (untuk refresh)
+        if (revenueChartInstance) {
+          revenueChartInstance.destroy();
+        }
+
+        revenueChartInstance = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Pendapatan (Rp)",
+                data: chartData,
+                borderColor: "#007bff", // Blue ABS
+                backgroundColor: "rgba(0, 123, 255, 0.1)",
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: "#fff",
+                pointBorderColor: "#007bff",
+                pointRadius: 4,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    let label = context.dataset.label || "";
+                    if (label) {
+                      label += ": ";
+                    }
+                    if (context.parsed.y !== null) {
+                      label += new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                      }).format(context.parsed.y);
+                    }
+                    return label;
+                  },
+                },
+              },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: { borderDash: [2, 4], color: "#e2e8f0" },
+                ticks: {
+                  callback: function (value) {
+                    return "Rp" + value / 1000 + "k"; // Singkat label
+                  },
+                },
+              },
+              x: {
+                grid: { display: false },
+              },
+            },
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

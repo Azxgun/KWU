@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Collapsible Component</title>
+    <style>
+        /* Menghilangkan tanda panah bawaan browser agar bisa kita kustomisasi */
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary {
+            list-style: none;
+        }
+        /* Animasi rotasi ikon saat dibuka */
+        details[open] .icon-chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="p-10 bg-slate-50 flex justify-center">
+
+    <div class="w-full max-w-md">
+        <details class="group border border-slate-200 bg-white rounded-lg shadow-sm overflow-hidden">
+            
+            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400">
+                <span class="text-sm font-semibold text-slate-900">
+                    Apa itu layanan kami?
+                </span>
+                <svg class="icon-chevron size-4 text-slate-500 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                </svg>
+            </summary>
+
+            <div class="px-4 pb-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                Ini adalah konten yang akan muncul ketika Anda mengklik bagian pemicu di atas. Sangat cocok digunakan untuk bagian FAQ (Frequently Asked Questions) di landing page Anda agar tampilan tetap rapi.
+            </div>
+            
+        </details>
+    </div>
+
+</body>
+</html>

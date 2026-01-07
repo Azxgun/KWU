@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Button Components</title>
+</head>
+<body class="p-10 bg-white flex flex-col gap-8">
+
+    <div>
+        <h2 class="text-lg font-bold mb-4">Button Variants</h2>
+        <div class="flex flex-wrap gap-4 items-center">
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 bg-slate-900 text-slate-50 hover:bg-slate-900/90">
+                Default
+            </button>
+
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 bg-red-600 text-white hover:bg-red-600/90">
+                Destructive
+            </button>
+
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 border border-slate-200 bg-transparent text-slate-950 hover:bg-slate-100">
+                Outline
+            </button>
+
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 bg-slate-100 text-slate-900 hover:bg-slate-100/80">
+                Secondary
+            </button>
+
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 hover:bg-slate-100 hover:text-slate-900">
+                Ghost
+            </button>
+
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none h-9 px-4 py-2 text-slate-900 underline-offset-4 hover:underline">
+                Link
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <h2 class="text-lg font-bold mb-4">Button Sizes</h2>
+        <div class="flex flex-wrap gap-4 items-end">
+            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all bg-slate-900 text-white h-8 px-3 text-xs">
+                Small (sm)
+            </button>
+
+            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all bg-slate-900 text-white h-9 px-4">
+                Default
+            </button>
+
+            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all bg-slate-900 text-white h-10 px-8">
+                Large (lg)
+            </button>
+
+            <button class="inline-flex items-center justify-center rounded-md transition-all bg-slate-900 text-white size-9">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
