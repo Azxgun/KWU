@@ -164,7 +164,7 @@
           </div>
           <div class="mt-4 text-center">
             <a
-              href="home.html"
+              href="index.html"
               class="text-sm text-gray-500 hover:text-gray-700"
               >← Kembali ke Beranda</a
             >
@@ -241,11 +241,11 @@
             if (userData.role === "admin") {
               window.location.href = "admin.html";
             } else {
-              window.location.href = "home.html";
+              window.location.href = "index.html";
             }
           } else {
             // Jika data user tidak ada di DB tapi Auth sukses (fallback)
-            window.location.href = "home.html";
+            window.location.href = "index.html";
           }
         } catch (error) {
           console.error("Login Error:", error);
