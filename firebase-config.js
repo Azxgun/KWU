@@ -21,12 +21,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBpuG8C9_RBXo7OmAXCmxYGZgZ9MoWOmeo",
-  authDomain: "projek-abs.firebaseapp.com",
-  projectId: "projek-abs",
-  storageBucket: "projek-abs.firebasestorage.app",
-  messagingSenderId: "266262062550",
-  appId: "1:266262062550:web:6d02256f07782eee077077",
+  apiKey: "AIzaSyAkPEwYp-D2r8J6URe84EgXTJiX_GKSfIk",
+  authDomain: "project--abs.firebaseapp.com",
+  projectId: "project--abs",
+  storageBucket: "project--abs.firebasestorage.app",
+  messagingSenderId: "73084003284",
+  appId: "1:73084003284:web:9b2745817bf5dfefe42c41",
 };
 
 const app = initializeApp(firebaseConfig);
