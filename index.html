@@ -1,284 +1,259 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projek ABS - Home</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      /* Dropdown style sederhana */
-      .dropdown:hover .dropdown-menu {
-        display: block;
-      }
-    </style>
-  </head>
-  <body class="bg-white">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <div
-            class="flex items-center gap-3 cursor-pointer"
-            onclick="window.location.href='index.html'"
-          >
-            <img src="logo abs.png" alt="Projek ABS Logo" class="h-10 w-auto" />
-            <span
-              class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-400 text-transparent bg-clip-text"
-            >
-              Projek ABS
-            </span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projek ABS</title>
 
-          <div class="hidden md:flex items-center space-x-8">
-            <a href="index.html" class="text-blue-600 font-semibold transition"
-              >Home</a
-            >
-            <a
-              href="service.html"
-              class="text-gray-600 hover:text-blue-600 transition"
-              >Service</a
-            >
-            <a
-              href="admin.html"
-              class="text-gray-600 hover:text-blue-600 transition"
-              >Admin</a
-            >
+  <!-- Tailwind -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-            <div id="auth-button-container">
-              <a
-                href="login.html"
-                class="px-5 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-blue-600 to-cyan-400 hover:opacity-90 transition"
-              >
-                Login
-              </a>
-            </div>
-          </div>
+  <style>
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+  </style>
+</head>
 
-          <div class="md:hidden">
-            <button class="p-2" id="mobile-menu-btn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
+<body class="bg-white">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+
+      <div class="flex items-center gap-3 cursor-pointer" onclick="location.href='index.html'">
+        <img src="logo abs.png" class="h-10">
+        <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-400 text-transparent bg-clip-text">
+          Projek ABS
+        </span>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="text-blue-600 font-semibold">Home</a>
+        <a href="service.html" class="text-gray-600 hover:text-blue-600">Service</a>
+        <a href="admin.html" class="text-gray-600 hover:text-blue-600">Admin</a>
+
+        <div id="auth-button-container">
+          <a href="login.html"
+            class="px-5 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-blue-600 to-cyan-400">
+            Login
+          </a>
         </div>
       </div>
 
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-white border-t px-4 py-2 space-y-2"
-      >
-        <a href="index.html" class="block py-2 text-blue-600 font-semibold"
-          >Home</a
-        >
-        <a href="service.html" class="block py-2 text-gray-600">Service</a>
-        <div id="mobile-auth-container" class="pt-2">
-          <a
-            href="login.html"
-            class="block w-full text-center py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-600 to-cyan-400"
-            >Login</a
-          >
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-xl">☰</button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-white px-4 py-3 border-t space-y-2">
+    <a href="index.html" class="block text-blue-600 font-semibold">Home</a>
+    <a href="service.html" class="block text-gray-600">Service</a>
+    <div id="mobile-auth-container"></div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="bg-gradient-to-br from-blue-600 to-cyan-400 text-white py-24 text-center">
+  <h1 class="text-4xl font-bold mb-4">Welcome to Projek ABS</h1>
+  <p class="max-w-2xl mx-auto text-white/90 mb-8">
+    Your trusted platform for professional electronics repair services
+  </p>
+
+  <div id="hero-cta" class="flex justify-center gap-4">
+    <a href="login.html" class="px-8 py-3 bg-white text-blue-600 rounded-full font-semibold">
+      Get Started
+    </a>
+    <a href="#services" class="px-8 py-3 border border-white rounded-full font-semibold">
+      Learn More
+    </a>
+  </div>
+</section>
+
+<!-- ================= CARA KERJA ================= -->
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-semibold text-center">Bagaimana Cara Kerjanya?</h2>
+    <p class="text-center text-gray-600 mt-2 mb-12">
+      Proses perbaikan yang mudah dan transparan dengan 4 langkah sederhana
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+      <!-- CARD 1 -->
+      <div class="bg-white shadow rounded-xl p-6 text-center">
+        <div class="w-14 h-14 mx-auto bg-blue-100 rounded-full flex items-center justify-center">
+          📄
         </div>
-      </div>
-    </nav>
-
-    <section
-      class="bg-gradient-to-br from-blue-600 to-cyan-400 text-white py-24 text-center"
-    >
-      <h1 class="text-4xl font-bold mb-4">Welcome to Projek ABS</h1>
-      <p class="max-w-2xl mx-auto text-lg text-white/90 mb-8">
-        Your trusted platform for professional electronics repair services
-      </p>
-      <div class="flex justify-center gap-4 flex-wrap" id="hero-cta">
-        <a
-          href="login.html"
-          class="px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-white/90"
-          >Get Started</a
-        >
-      </div>
-    </section>
-
-    <section id="how" class="py-16">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-semibold">Bagaimana Cara Kerjanya?</h2>
-          <p class="text-gray-600 mt-2">4 langkah sederhana dan transparan</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-white shadow rounded-xl p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600"
-            >
-              1
-            </div>
-            <h3 class="font-semibold mb-2">Pemesanan</h3>
-            <p class="text-gray-600 text-sm">
-              Isi form pemesanan sesuai perangkat Anda
-            </p>
-          </div>
-          <div class="bg-white shadow rounded-xl p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600"
-            >
-              2
-            </div>
-            <h3 class="font-semibold mb-2">Diagnosis</h3>
-            <p class="text-gray-600 text-sm">
-              Teknisi memeriksa dan membuat laporan kerusakan
-            </p>
-          </div>
-          <div class="bg-white shadow rounded-xl p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600"
-            >
-              3
-            </div>
-            <h3 class="font-semibold mb-2">Approval</h3>
-            <p class="text-gray-600 text-sm">
-              Anda menyetujui estimasi biaya perbaikan
-            </p>
-          </div>
-          <div class="bg-white shadow rounded-xl p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600"
-            >
-              4
-            </div>
-            <h3 class="font-semibold mb-2">Perbaikan</h3>
-            <p class="text-gray-600 text-sm">
-              Teknisi memperbaiki perangkat hingga selesai
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="py-20 max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-4xl font-semibold mb-4">Our Services</h2>
-      <div class="bg-white shadow-lg rounded-2xl p-10 max-w-xl mx-auto">
-        <h3 class="text-2xl font-semibold mb-2">Service Elektronik</h3>
-        <p class="text-gray-600 mb-6">
-          Perbaikan perangkat oleh teknisi profesional
+        <h3 class="font-semibold mt-4">Pemesanan</h3>
+        <p class="text-sm text-gray-600 mt-2">
+          Isi form pemesanan dengan detail kerusakan perangkat
         </p>
-        <a
-          href="form.html"
-          class="bg-gradient-to-br from-blue-600 to-cyan-400 text-white px-6 py-3 rounded-lg font-semibold inline-block"
-          >Perbaiki Sekarang</a
-        >
       </div>
-    </section>
 
-    <script type="module">
-      import {
-        auth,
-        db,
-        onAuthStateChanged,
-        signOut,
-        getDoc,
-        doc,
-      } from "./firebase-config.js";
+      <!-- CARD 2 -->
+      <div class="bg-white shadow rounded-xl p-6 text-center">
+        <div class="w-14 h-14 mx-auto bg-blue-100 rounded-full flex items-center justify-center">
+          🔍
+        </div>
+        <h3 class="font-semibold mt-4">Diagnosis</h3>
+        <p class="text-sm text-gray-600 mt-2">
+          Teknisi menganalisa dan membuat laporan kerusakan
+        </p>
+      </div>
 
-      const authBtnContainer = document.getElementById("auth-button-container");
-      const mobileAuthContainer = document.getElementById(
-        "mobile-auth-container"
-      );
-      const heroCta = document.getElementById("hero-cta");
+      <!-- CARD 3 -->
+      <div class="bg-white shadow rounded-xl p-6 text-center">
+        <div class="w-14 h-14 mx-auto bg-blue-100 rounded-full flex items-center justify-center">
+          ✅
+        </div>
+        <h3 class="font-semibold mt-4">Approval</h3>
+        <p class="text-sm text-gray-600 mt-2">
+          Anda menyetujui estimasi biaya perbaikan
+        </p>
+      </div>
 
-      // Listener: Cek apakah ada user login
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          // --- USER LOGGED IN ---
-          let userName = "User";
+      <!-- CARD 4 -->
+      <div class="bg-white shadow rounded-xl p-6 text-center">
+        <div class="w-14 h-14 mx-auto bg-green-100 rounded-full flex items-center justify-center">
+          🛠️
+        </div>
+        <h3 class="font-semibold mt-4">Perbaikan</h3>
+        <p class="text-sm text-gray-600 mt-2">
+          Teknisi memperbaiki perangkat hingga selesai
+        </p>
+      </div>
 
-          // Ambil nama user dari Firestore
-          try {
-            const docSnap = await getDoc(doc(db, "users", user.uid));
-            if (docSnap.exists()) {
-              userName = docSnap.data().nama || "User";
-            }
-          } catch (e) {
-            console.log("Error fetching profile", e);
-          }
+    </div>
+  </div>
+</section>
 
-          // Update Desktop Navbar
-          authBtnContainer.innerHTML = `
-                <div class="relative dropdown">
-                    <button class="flex items-center gap-2 font-semibold text-gray-700 hover:text-blue-600 focus:outline-none">
-                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-                            ${userName.charAt(0).toUpperCase()}
-                        </div>
-                        <span>${userName}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-50 border border-gray-100">
-                        <a href="service.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Status Pesanan</a>
-                        <a href="settingspage.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pengaturan</a>
-                        <div class="border-t border-gray-100 my-1"></div>
-                        <button id="logout-btn" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Logout</button>
-                    </div>
-                </div>
-            `;
+<!-- ================= TENTANG ================= -->
+<section class="bg-gray-50 py-16">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-3xl font-semibold mb-4">Tentang Projek ABS</h2>
+    <p class="text-gray-600 max-w-3xl mx-auto">
+      Platform layanan perbaikan elektronik terpercaya dengan sistem tracking real-time
+      dan teknisi profesional bersertifikat.
+    </p>
+  </div>
+</section>
 
-          // Update Mobile Navbar
-          mobileAuthContainer.innerHTML = `
-                <div class="text-center py-2 border-t border-b border-gray-100 my-2">
-                    <p class="text-sm text-gray-500">Halo, ${userName}</p>
-                </div>
-                <button id="logout-btn-mobile" class="block w-full text-center py-2 rounded-lg text-white font-semibold bg-red-500 hover:bg-red-600">Logout</button>
-            `;
+<!-- ================= KENAPA MEMILIH KAMI ================= -->
+<section class="py-20">
+  <div class="max-w-7xl mx-auto px-4">
 
-          // Update Hero CTA
-          if (heroCta) {
-            heroCta.innerHTML = `<a href="service.html" class="px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-white/90">Lihat Status Service</a>`;
-          }
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
-          // Attach Logout Event Listeners
-          document
-            .getElementById("logout-btn")
-            ?.addEventListener("click", handleLogout);
-          document
-            .getElementById("logout-btn-mobile")
-            ?.addEventListener("click", handleLogout);
-        } else {
-          // --- USER NOT LOGGED IN ---
-          const loginBtnHtml = `<a href="login.html" class="px-5 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-blue-600 to-cyan-400 hover:opacity-90 transition">Login</a>`;
+      <!-- KIRI : JUDUL + DESKRIPSI -->
+      <div>
+        <h2 class="text-3xl font-semibold mb-4">Kenapa Memilih Kami?</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Projek ABS adalah solusi terpercaya untuk segala kebutuhan perbaikan
+          perangkat elektronik Anda. Dengan teknisi berpengalaman dan sistem
+          kerja yang transparan, kami memastikan setiap perangkat ditangani
+          secara profesional dari awal hingga selesai.
+          <br><br>
+          Kami menggunakan teknologi modern untuk memberikan pengalaman terbaik
+          kepada pelanggan, mulai dari proses pemesanan yang mudah, diagnosis
+          yang jelas, hingga sistem notifikasi real-time untuk setiap tahap
+          perbaikan perangkat Anda.
+        </p>
+      </div>
 
-          authBtnContainer.innerHTML = loginBtnHtml;
-          mobileAuthContainer.innerHTML = `<a href="login.html" class="block w-full text-center py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-600 to-cyan-400">Login</a>`;
-        }
-      });
+      <!-- KANAN : CARD KEUNGGULAN -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-      async function handleLogout() {
-        try {
-          await signOut(auth);
-          alert("Anda telah logout.");
-          window.location.reload();
-        } catch (error) {
-          console.error("Logout Error", error);
-        }
-      }
+        <div class="bg-white shadow rounded-xl p-6 text-center">
+          <div class="w-12 h-12 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+            🛡️
+          </div>
+          <h3 class="font-semibold">Garansi Perbaikan</h3>
+          <p class="text-sm text-gray-600 mt-2">
+            Jaminan kualitas untuk setiap layanan perbaikan
+          </p>
+        </div>
 
-      // Mobile Menu Toggle
-      document
-        .getElementById("mobile-menu-btn")
-        .addEventListener("click", () => {
-          const menu = document.getElementById("mobile-menu");
-          menu.classList.toggle("hidden");
-        });
-    </script>
-  </body>
+        <div class="bg-white shadow rounded-xl p-6 text-center">
+          <div class="w-12 h-12 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+            ⏱️
+          </div>
+          <h3 class="font-semibold">Proses Cepat</h3>
+          <p class="text-sm text-gray-600 mt-2">
+            Estimasi waktu yang akurat dan efisien
+          </p>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6 text-center">
+          <div class="w-12 h-12 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+            👨‍🔧
+          </div>
+          <h3 class="font-semibold">Teknisi Ahli</h3>
+          <p class="text-sm text-gray-600 mt-2">
+            Ditangani oleh teknisi profesional bersertifikat
+          </p>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6 text-center">
+          <div class="w-12 h-12 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+            💰
+          </div>
+          <h3 class="font-semibold">Harga Transparan</h3>
+          <p class="text-sm text-gray-600 mt-2">
+            Tanpa biaya tersembunyi dalam setiap layanan
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERANGKAT ================= -->
+<section class="bg-gray-50 py-16">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-semibold text-center mb-12">Perangkat yang Kami Layani</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+      <div class="shadow rounded-xl p-6">💻 Laptop</div>
+      <div class="shadow rounded-xl p-6">📱 Smartphone</div>
+      <div class="shadow rounded-xl p-6">📟 Tablet</div>
+      <div class="shadow rounded-xl p-6">🖥️ PC / Desktop</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services" class="py-20 text-center">
+  <h2 class="text-4xl font-semibold mb-6">Our Services</h2>
+  <div class="bg-white shadow-lg rounded-2xl p-10 max-w-xl mx-auto">
+    🔧
+    <h3 class="text-2xl font-semibold mt-3">Service Elektronik</h3>
+    <p class="text-gray-600 my-4">
+      Professional repair services with real-time tracking
+    </p>
+    <a href="form.html"
+      class="bg-gradient-to-r from-blue-600 to-cyan-400 text-white px-6 py-3 rounded-lg font-semibold">
+      Perbaiki Sekarang
+    </a>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="bg-gradient-to-r from-blue-600 to-cyan-400 text-white py-16 text-center">
+  <h2 class="text-3xl font-bold mb-3">Ready to get started?</h2>
+  <p class="mb-6">Join thousands of satisfied customers using Projek ABS</p>
+  <a href="login.html" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold">
+    Sign Up Now
+  </a>
+</section>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  document.getElementById("mobile-menu-btn").onclick = () => {
+    document.getElementById("mobile-menu").classList.toggle("hidden");
+  };
+</script>
+
+</body>
 </html>
